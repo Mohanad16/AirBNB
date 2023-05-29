@@ -1,77 +1,94 @@
 package POM;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Actions;
 import utilities.Locators;
 import utilities.SelenuimBase;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
-public class HomePage extends SelenuimBase {
+public class HomePage {
     public void closePopup(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        By popup = By.xpath("//span[@class='i9dqh6z dir dir-ltr']");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(popup));
+        SelenuimBase selenuimBase = new SelenuimBase();
 
-        WebElement close = driver.findElement(popup);
+        By Popup = By.xpath("//span[@class='i9dqh6z dir dir-ltr']");
+        selenuimBase.waitForElementToBeVisible(Popup, 20);
+
+        WebElement close = driver.findElement(Popup);
         close.click();
     }
 
-    public void searchSteps(String country, int checkInDate, int checkOutDate) throws InterruptedException {
+    /**
+     * this method create a reservation steps into Airbnb web application
+     *
+     * @param country      enter country to search for
+     * @param checkInDate  enter number of days after current day to select checkin date
+     * @param checkOutDate enter number of days after current day to select checkout date
+     */
+    public void reservationSteps(String country, int checkInDate, int checkOutDate) throws InterruptedException {
         Actions actions = new Actions();
         Locators locators = new Locators();
-
-        actions.click(locators.country);
+        SelenuimBase selenuimBase = new SelenuimBase();
+//Actions to search for country
+        actions.click(locators.ChooseCountry);
         actions.sendKeys(locators.SearchCountry, country);
-        Thread.sleep(1000);
+        selenuimBase.waitForElementToBeClickable(locators.SelectCountry, 20);
         actions.click(locators.SelectCountry);
+
+//Actions of checkin and checkout date
         actions.click(locators.checkInDate(checkInDate));
         actions.click(locators.checkoutDate(checkOutDate));
-        Thread.sleep(2000);
+
+//Actions to add number of guests
+        selenuimBase.waitForElementToBeVisible(locators.addGuests, 10);
         actions.click(locators.addGuests);
-        actions.click(locators.adults);
-        actions.click(locators.adults);
-        actions.click(locators.child);
-        actions.click(locators.search);
+        actions.click(locators.AddNumberOfAdults);
+        actions.click(locators.AddNumberOfAdults);
+        actions.click(locators.AddNumberOfChildren);
+        actions.click(locators.ClickSearchButton);
 
-       Thread.sleep(2000);
-        actions.click(locators.filter);
-        Thread.sleep(2000);
-
-        actions.click(locators.BedRooms);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0, 1000)");
-        Thread.sleep(2000);
-        actions.click(locators.showMore);
-        actions.click(locators.pool);
-        actions.click(locators.confirm);
+//Actions to filter by giving bedroom numbers and choose pool to be existed
+        selenuimBase.waitForElementToBeVisible(locators.mapVisible, 30);
+        actions.click(locators.ClickFilterButton);
+        selenuimBase.waitForElementToBeVisible(locators.ChooseNumberOfBedrooms, 10);
+        actions.click(locators.ChooseNumberOfBedrooms);
+        actions.scroll(1000);
+        selenuimBase.waitForElementToBeVisible(locators.ShowMoreButton, 10);
+        actions.click(locators.ShowMoreButton);
+        actions.click(locators.SelectPoolCheckBox);
+        actions.click(locators.ConfirmButton);
     }
 
-    public String checkCountry() {
+    /**
+     *
+     * @return the country name that has entered to check actual with expected
+     */
+    public String checkCountry() throws InterruptedException {
         Actions actions = new Actions();
         Locators locators = new Locators();
-        String CountryText= actions.assertCountry(locators.verifyCountry);
-        return CountryText;
+        return actions.getText(locators.verifyCountry);
     }
 
-    public String checkDate() {
+    /**
+     *
+     * @return the checkin & checkout date that has entered to check actual with expected
+     */
+
+    public String checkDate() throws InterruptedException {
         Actions actions = new Actions();
         Locators locators = new Locators();
-        String dateText= actions.assertCountry(locators.verifyDate);
-        return dateText;
+        return actions.getText(locators.verifyDate);
     }
 
-    public String checkGuests() {
+    /**
+     *
+     * @return the number of guests that has entered to check actual with expected
+     */
+    public String checkGuests() throws InterruptedException {
         Actions actions = new Actions();
         Locators locators = new Locators();
-        String GuestsNumber= actions.assertCountry(locators.verifyGuest);
-        return GuestsNumber;
+        return actions.getText(locators.verifyGuest);
     }
 
 

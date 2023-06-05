@@ -8,14 +8,14 @@ public class Actions extends SelenuimBase {
 
 
     public void click(By path) throws InterruptedException {
-        Thread.sleep(200);
+        Thread.sleep(500);
         WebElement ClickButton = driver.findElement(path);
         ClickButton.click();
 
     }
 
     public void sendKeys(By path, String value) throws InterruptedException {
-        Thread.sleep(200);
+        Thread.sleep(500);
         WebElement SendText = driver.findElement(path);
         SendText.sendKeys(value);
 

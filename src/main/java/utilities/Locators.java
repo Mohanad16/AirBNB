@@ -56,21 +56,21 @@ public class Locators {
 
     public By verifyGuest = By.xpath("//div[@class='cs3bjhu dir dir-ltr']/button[3]/div");
 
-    public By addGuests = By.xpath("//div[@class='p1kudodg dir dir-ltr']");
+    public By addGuests = By.xpath("(//div[@class='c1ykbue4 dir dir-ltr'])[3]");
 
     public By AddNumberOfAdults = By.xpath("//button[@data-testid='stepper-adults-increase-button']");
 
     public By AddNumberOfChildren = By.xpath("//button[@data-testid='stepper-children-increase-button']");
 
-    public By ClickSearchButton = By.xpath("//span[@class='t1l18xbv dir dir-ltr']");
+    public By ClickSearchButton = By.xpath("//span[@class='t1dqvypu dir dir-ltr']");
 
-    public By ClickFilterButton = By.xpath("//button[@class='l1j9v1wn c1tureqs dir dir-ltr']");
+    public By ClickFilterButton = By.xpath("//button[@data-testid='category-bar-filter-button']");
 
     public By ChooseNumberOfBedrooms = By.xpath("(//div[@id='menuItemButton-5']/button)[1]");
 
     public By ShowMoreButton = By.xpath("(//span[@class='lnq7699 dir dir-ltr'])[1]");
 
-    public By SelectPoolCheckBox = By.xpath("(//div[@class='lf10jxs dir dir-ltr']/span)[12]");
+    public By SelectPoolCheckBox = By.xpath("//input[@name='Pool']");
 
     public By ConfirmButton = By.xpath("//a[@data-testid='filter-modal-confirm']");
 

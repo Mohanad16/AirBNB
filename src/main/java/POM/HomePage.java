@@ -1,23 +1,11 @@
 package POM;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import utilities.Actions;
 import utilities.Locators;
 import utilities.SelenuimBase;
 
 
 public class HomePage {
-    public void closePopup(WebDriver driver) {
-        SelenuimBase selenuimBase = new SelenuimBase();
-
-        By Popup = By.xpath("//span[@class='i9dqh6z dir dir-ltr']");
-        selenuimBase.waitForElementToBeVisible(Popup, 20);
-
-        WebElement close = driver.findElement(Popup);
-        close.click();
-    }
 
     /**
      * this method create a reservation steps into Airbnb web application

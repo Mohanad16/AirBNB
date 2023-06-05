@@ -1,7 +1,6 @@
 package airbnb;
 
 import POM.HomePage;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -18,10 +17,9 @@ public class ReservationTest extends SelenuimBase {
     @BeforeTest
     public void startBrowser() {
         SelenuimBase selenuimBase = new SelenuimBase();
-        HomePage homePage = new HomePage();
-
-        WebDriver driver = selenuimBase.seleniumConfig("https://www.airbnb.com/");
-        homePage.closePopup(driver);
+       // HomePage homePage = new HomePage();
+       selenuimBase.seleniumConfig("https://www.airbnb.com/");
+       // homePage.closePopup(driver);
     }
 
     SoftAssert softAssert = new SoftAssert();
@@ -38,6 +36,7 @@ public class ReservationTest extends SelenuimBase {
         softAssert.assertEquals(homePage.checkCountry(), expectedCountry);
         softAssert.assertEquals(homePage.checkDate(), loc.CheckChosenDate(0, 10));
         softAssert.assertEquals(homePage.checkGuests(), expectedGuest);
+        softAssert.assertAll();
     }
 
 
